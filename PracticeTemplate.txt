@@ -1,0 +1,39 @@
+string? userInput = ""; // declare the string to expect a null value
+Console.Write("Please select your example: ");
+userInput = Console.ReadLine();
+
+if (userInput != null)
+{
+    if (userInput == "1")
+    {
+        // 
+        Console.WriteLine("*****************************");
+        Console.WriteLine("\tExample 1:");
+        Console.WriteLine("*****************************");
+
+
+    }
+    else if (userInput == "2")
+    {
+        // Convert from if else to switch
+        Console.WriteLine("*****************************");
+        Console.WriteLine("\tExample 2:");
+        Console.WriteLine("*****************************");
+
+    }
+    else if (userInput == "3")
+    {
+        // 
+        Console.WriteLine("*****************************");
+        Console.WriteLine("\tExample 3:");
+        Console.WriteLine("*****************************");
+
+    }
+
+    Console.WriteLine("Thank you! Please press enter to exit.");
+    Console.ReadLine();
+}
+else
+{
+    Console.WriteLine("Please try again");
+}
