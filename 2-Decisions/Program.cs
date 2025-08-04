@@ -303,6 +303,66 @@ if (userInput != null)
         Console.WriteLine("\tExample 10:");
         Console.WriteLine("*****************************");
 
+        int num1 = 0;
+        int num2 = 0;
+        bool isNumber1 = false;
+        bool isNumber2 = false;
+        int result = 0;
+
+        Console.WriteLine("Enter the first number: ");
+        string firstNumber = Console.ReadLine();
+
+        Console.WriteLine("Enter the second number: ");
+        string secondNumber = Console.ReadLine();
+
+        Console.WriteLine("Please select your operation (+, -, *, /) :");
+        string operatorSelection = Console.ReadLine();
+
+        isNumber1 = int.TryParse(firstNumber, out num1);
+        isNumber2 = int.TryParse(secondNumber, out num2);
+
+        if (isNumber1 && isNumber2)
+        {
+            switch (operatorSelection)
+            {
+                case "+":
+                    result = num1 + num2;
+                    Console.WriteLine("Result: " + result);
+                    break;
+
+                case "-":
+                    result = num1 - num2;
+                    Console.WriteLine("Result: " + result);
+                    break;
+
+                case "*":
+                    result = num1 *  num2;
+                    Console.WriteLine("Result: " + result);
+                    break;
+
+                case "/":
+                    if (num2 != 0)
+                    {
+                        result = num1 / num2;
+                        Console.WriteLine("Result: " + result);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Division by zero is not allowed.");
+                    }
+
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid operation. Please choose +, -, *, or /.");
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Please enter a whole number");
+        }
+
     }
 
     Console.WriteLine("Thank you! Please press enter to exit.");
