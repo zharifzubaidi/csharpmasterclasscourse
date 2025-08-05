@@ -1,6 +1,28 @@
 ﻿
 using System.Globalization;
 
+// Method 
+void MyFirstMethod()
+{
+    Console.WriteLine("MyFirstMethod is called");
+}
+void Write() 
+{
+    Console.WriteLine("Writing....");
+}
+
+void WriteSomething(string myString)
+{
+    Console.WriteLine("This is what I'm writing:\n" + myString);
+}
+
+int AddTwoValue(int value1, int value2)
+{
+    return value1 + value2;
+}
+
+
+// Printing and method calls
 string? userInput = ""; // declare the string to expect a null value
 Console.Write("Please select your example: ");
 userInput = Console.ReadLine();
@@ -14,6 +36,11 @@ if (userInput != null)
         Console.WriteLine("\tExample 1:");
         Console.WriteLine("*****************************");
 
+        MyFirstMethod(); 
+        Write();
+        WriteSomething("Hello world!");
+        
+
 
     }
     else if (userInput == "2")
@@ -23,6 +50,18 @@ if (userInput != null)
         Console.WriteLine("\tExample 2:");
         Console.WriteLine("*****************************");
 
+        int inputValue1 = 0;
+        int inputValue2 = 0;
+
+        Console.Write("Enter your first whole number: ");
+        int.TryParse(Console.ReadLine(), out inputValue1);
+
+        Console.Write("Enter your second whole number: ");
+        int.TryParse(Console.ReadLine(), out inputValue2);
+
+        int result = AddTwoValue(inputValue1, inputValue2);
+
+        Console.WriteLine($"The result of {inputValue1} and {inputValue2} is {result}");
 
     }
     else if (userInput == "3")
