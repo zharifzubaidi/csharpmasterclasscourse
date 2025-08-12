@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace CollectionsExample
+namespace ClassOopExample
 {
     internal class Program
     {
@@ -19,7 +19,11 @@ namespace CollectionsExample
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
 
+                    Car carZharif = new Car("Saga","Proton"); // Create an instance/object of the Car class
 
+                    Car carZaz = new Car("Myvi", "Perodua");
+
+                    carZharif.UpdateCarModel("Persona");
 
                 }
                 else if (userInput == "2")
