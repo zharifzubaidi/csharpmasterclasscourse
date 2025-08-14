@@ -10,7 +10,7 @@ namespace ClassOopExample
     {
         // Use field in properties only when you need to control access to the data
         // Static field to hold the next ID available
-        private static int nextId = 1;
+        private static int _nextId = 1;
         // Readonly fields are set once and cannot be changed after that
         private readonly int _id;
         // Backing field for write-only property - can only be set in the constructor
@@ -43,7 +43,7 @@ namespace ClassOopExample
             Name = "Unknown";
             Address = "Unknown";
             ContactNumber = "Unknown";
-            _id = nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
+            _id = _nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
         }
 
         // Custom constructor
@@ -53,12 +53,12 @@ namespace ClassOopExample
             Name = name;
             Address = address;
             ContactNumber = contactNumber;
-            _id = nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
+            _id = _nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
         }
         public Customer(string name)
         {
             Name = name;
-            _id = nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
+            _id = _nextId++; // Assign the current nextId to _id and then increment nextId for the next instance
         }
 
         // Methods
