@@ -10,7 +10,7 @@ namespace ClassOopExample
     {
         // Property
         public string? QuestionText { get; set; }
-        public string[]? Answer { get; set; }
+        public string[] Answer { get; set; }
         public int CorrectAnswerIndex { get; set; }
 
         // Custom constructor

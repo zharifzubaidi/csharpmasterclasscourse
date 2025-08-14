@@ -213,16 +213,17 @@ namespace ClassOopExample
                             "What is the capital of Germany?",
                             new string[] {"Paris","Berlin", "London", "Madrid"},
                             1
-                        )                    
+                        ),
+                        new Question(
+                            "What is 2 + 2?",
+                            new string[] {"12","67", "3", "4"},
+                            3
+                        )
                     };
 
                     Quiz quiz = new Quiz(questions);
 
-                    quiz.DisplayQuestion(questions[0]);
-
-                    Console.ReadLine();
-
-                    //quiz.StartQuiz();
+                    quiz.StartQuiz();                    
 
                 }               
                 else
