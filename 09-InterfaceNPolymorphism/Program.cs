@@ -2,9 +2,63 @@
 namespace PolyInterface
 
 {
+    // Interface becomes a blueprint / template for classes
+    public interface IAnimal
+    {
+        void MakeSound();
+        string Eat(string food);
+    }
+    public class Dog : IAnimal
+    {
+        public void MakeSound()
+        {
+            Console.WriteLine("Woof!");
+        }
+        public string Eat(string food)
+        {
+            return $"The dog is eating {food}.";
+        }
+    }
+
+    public class Cat : IAnimal
+    {
+        public void MakeSound()
+        {
+            Console.WriteLine("Meow!");
+        }
+        public string Eat(string food)
+        {
+            return $"The cat is eating {food}.";
+        }
+    }
+
+    // Polymorphism example with normal class inheritance
+    public class Species
+    {
+        public virtual void MakeAnimalSound()
+        {
+            Console.WriteLine("Some generic animal sound");
+        }
+    }
+
+    public class Lion : Species
+    {
+        public override void MakeAnimalSound()
+        {
+            Console.WriteLine("Roar!");
+        }
+    }  
+
+    public class Snake : Species
+    {
+        public override void MakeAnimalSound()
+        {
+            Console.WriteLine("Hiss!");
+        }
+    }
+
     internal class Program
     {
-
         static void Main(string[] args)
         {
             string? userInput = "";
@@ -19,7 +73,9 @@ namespace PolyInterface
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
 
-
+                    Dog dog = new Dog();
+                    dog.MakeSound();
+                    Console.WriteLine(dog.Eat("bone"));
                 }
                 else if (userInput == "2")
                 {
@@ -27,12 +83,20 @@ namespace PolyInterface
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
 
+                    Cat cat = new Cat();
+                    cat.MakeSound();
+                    Console.WriteLine(cat.Eat("fish"));
                 }
                 else if (userInput == "3")
                 {
                     Console.WriteLine("*****************************");
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
+
+                    // 2nd Part of Polymorphism Example
+                    // you store a Snake instance in a variable typed as its base class Species.
+                    Species mySomething = new Snake();
+                    mySomething.MakeAnimalSound();
 
                 }
                 else if (userInput == "4")
