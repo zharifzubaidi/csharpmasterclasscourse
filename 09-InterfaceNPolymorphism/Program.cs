@@ -2,7 +2,48 @@
 namespace PolyInterface
 
 {
+    // Interface aka the template/blueprint
+    #region Payment Polymorphism Example
+    public interface IPaymentProcessor
+    {
+        void ProcessPayment(decimal amount);
+    }
+
+    public class CreditCardProcessor : IPaymentProcessor
+    {
+        public void ProcessPayment(decimal amount)
+        {
+            Console.WriteLine($"Processing credit card payment of ${amount}");        
+        }
+    }
+
+    public class PayPalProcessor : IPaymentProcessor
+    {
+        public void ProcessPayment(decimal amount)
+        {
+            Console.WriteLine($"Processing PayPal payment of ${amount}");
+        }
+    }
+
+    // Class that implement interface commonly known as Service
+    public class PaymentService
+    {
+        private readonly IPaymentProcessor _processor;
+
+        public PaymentService(IPaymentProcessor processor)
+        {
+            _processor = processor;
+        }
+
+        public void ProcessOrderPayment(decimal amount)
+        {
+            _processor.ProcessPayment(amount);
+        }
+    }
+    #endregion
+
     // Interface becomes a blueprint / template for classes
+    #region Interface Example
     public interface IAnimal
     {
         void MakeSound();
@@ -31,8 +72,10 @@ namespace PolyInterface
             return $"The cat is eating {food}.";
         }
     }
+    #endregion
 
     // Polymorphism example with normal class inheritance
+    #region Polymorphism Example
     public class Species
     {
         public virtual void MakeAnimalSound()
@@ -57,6 +100,8 @@ namespace PolyInterface
         }
     }
 
+    #endregion
+    
     internal class Program
     {
         static void Main(string[] args)
@@ -105,12 +150,32 @@ namespace PolyInterface
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
 
+                    // Declares a variable that in compile time is IPaymentProcessor but in runtime it is CreditCardProcessor
+                    // An instance that implement the contract of IPaymentProcessor via CreditCardProcessor
+                    // Loose coupling reason. Declared as interface but you can swap the implementation (creditCardProcessor) anytime
+                    // Declaring the variable as the interface type makes the code depend on the abstraction, not the concrete class,
+                    // so implementations can be swapped without changing callers.
+                    IPaymentProcessor creditCardProcessor = new CreditCardProcessor();
+                    
+                    // Create a payment service and injecting dependency of creditCardProcessor into the service
+                    PaymentService paymentService = new PaymentService(creditCardProcessor);
+
+                    // Ask the service to use the method inside the dependency
+                    paymentService.ProcessOrderPayment(100.00m);
+
+                    // Reuse the code with easy swap of dependency on processor (creditCard - PayPal)
+                    IPaymentProcessor paypalProcessor = new PayPalProcessor();
+                    paymentService = new PaymentService(paypalProcessor);
+                    paymentService.ProcessOrderPayment(100.00m);
+
                 }
                 else if (userInput == "5")
                 {
                     Console.WriteLine("*****************************");
                     Console.WriteLine($"\tExample {userInput}:");
                     Console.WriteLine("*****************************");
+
+
 
                 }
                 else if (userInput == "6")
